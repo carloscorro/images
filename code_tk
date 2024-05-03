@@ -1,0 +1,37 @@
+app = Tk()
+app.title("GCD- CENTRAL SICOOB UNI 1.0")
+envio = StringVar()
+
+# Define o tamanho da janela e impede que ela seja redimensionada
+largura, altura = 500, 300
+app.geometry(f"{largura}x{altura}")
+app.resizable(False, False)
+
+app.configure(background="#003641",highlightbackground="#00ae9d", padx=5, pady=5)
+
+txt1 = Label(app, text= "Clique para atualizar a base de clientes:", background="#003641", font=("Arial", 12), foreground="#fff")
+txt1.grid(row=1,column=1)
+btn1 = Button(app, text = "Clique aqui abrir na internet", bd='5', command=atualiza_clientes)
+btn1.grid(row=1, column=2)
+
+espaco = Label(app, text= "", background="#003641", font=("Arial", 12), foreground="#fff")
+espaco.grid(row=2)
+
+txt2 = Label(app, text= "Clique para enviar os e-mails:", background="#003641", font=("Arial", 12), foreground="#fff")
+txt2.grid(row=3,column=1)
+btn2 = Button(app, text = "Clique aqui para executar", bd='5', command=arquivo_existe)
+btn2.grid(row=3, column=2)
+txt2 = Label(app, textvariable=envio, font=("Arial", 10, "underline"), padx=10, pady=5, justify="center",bg= "#003641" ,fg="#ff0000")
+txt2.grid(row=3, column=3)
+
+# Carrega a imagem e redimensiona para caber na janela
+logo = PhotoImage(file="DE-logo-512.png")
+while logo.width() > largura or logo.height() > altura:
+    logo = logo.zoom(1)
+    logo = logo.subsample(2)
+
+logo_label = Label(app, image=logo, background="#003641")
+logo_label.image = logo  # Mantém uma referência para a imagem
+logo_label.grid(row=4, column=3, sticky='se')  # sticky='se' para posicionar no canto direito inferior
+
+app.mainloop()
